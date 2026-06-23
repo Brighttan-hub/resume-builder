@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import CustomCursor from "@/components/CustomCursor";
 import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
+import { launchConfetti } from "@/components/Confetti";
 
 export default function SignUp() {
   const { signUp } = useAuth();
@@ -53,6 +55,11 @@ export default function SignUp() {
     setLoading(true);
     try {
       await signUp({ fullName: formData.fullName, email: formData.email, password: formData.password });
+      launchConfetti();
+      toast.success(`Welcome aboard, ${formData.fullName.split(" ")[0]}! 🎉`, {
+        description: "Your account is ready. Let's build your resume!",
+        duration: 4000,
+      });
       navigate("/create-resume");
     } catch (err: any) {
       setError(err.message ?? "Sign up failed. Please try again.");

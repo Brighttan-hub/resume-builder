@@ -12,6 +12,8 @@ import Footer from "@/components/Footer";
 import { resumeApi, getToken, saveResumeLocally } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { getDomainConfig } from "@/lib/domainConfig";
+import ResumeStrengthMeter from "@/components/ResumeStrengthMeter";
+import BuilderAITip from "@/components/BuilderAITip";
 
 // ─── Static data ──────────────────────────────────────────────────────────────
 
@@ -411,6 +413,7 @@ export default function ResumeBuilder() {
 
   const card = (children: React.ReactNode) => (
     <motion.div key={step} className="card-blur p-7 sm:p-9 rounded-2xl" initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.4 }}>
+      <BuilderAITip step={step} />
       {children}
     </motion.div>
   );
@@ -1004,6 +1007,17 @@ export default function ResumeBuilder() {
                     <button onClick={()=>setShowPreview(v=>!v)} className="text-xs text-foreground/50 hover:text-foreground smooth-transition lg:hidden">{showPreview?"Hide":"Show"}</button>
                   </div>
                 </div>
+
+                {/* Live Resume Strength Meter */}
+                <ResumeStrengthMeter
+                  fd={fd}
+                  workList={workList}
+                  skills={skills}
+                  eduList={eduList}
+                  projects={projects}
+                  certs={certs}
+                />
+
                 <div className={`lg:block ${showPreview?"block":"hidden lg:block"}`}>
                   <div ref={previewRef}>
                     <LivePreview fd={fd} tpl={tpl} twoCol={twoCol} withPhoto={hasPhoto} eduLevel={eduLevel} experience={experience} workList={workList} skills={skills.filter(Boolean)} />

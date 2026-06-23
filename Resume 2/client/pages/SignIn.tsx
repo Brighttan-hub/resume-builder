@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import CustomCursor from "@/components/CustomCursor";
 import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 export default function SignIn() {
   const { signIn } = useAuth();
@@ -22,6 +23,10 @@ export default function SignIn() {
     setLoading(true);
     try {
       await signIn({ email, password });
+      toast.success("Welcome back! 🎉", {
+        description: "You're now signed in. Let's build your resume.",
+        duration: 3000,
+      });
       navigate("/dashboard");
     } catch (err: any) {
       setError(err.message ?? "Sign in failed. Please try again.");

@@ -7,6 +7,8 @@ import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 import Tilt3DCard from "@/components/Tilt3DCard";
 import AIAssistant from "@/components/AIAssistant";
+import TypewriterText from "@/components/TypewriterText";
+import BackToTop from "@/components/BackToTop";
 
 const HeroScene3D = lazy(() => import("@/components/HeroScene3D"));
 const ParticleBackground = lazy(() => import("@/components/ParticleBackground"));
@@ -39,11 +41,7 @@ const Index = () => {
   const heroScale = useTransform(scrollY, [0, 400], [1, 0.95]);
 
   const words = ["Dream Job", "Next Role", "Career Goal", "Promotion"];
-  const [wordIndex, setWordIndex] = useState(0);
-  useEffect(() => {
-    const t = setInterval(() => setWordIndex((i) => (i + 1) % words.length), 2500);
-    return () => clearInterval(t);
-  }, []);
+  // wordIndex managed by TypewriterText component
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -132,22 +130,13 @@ const Index = () => {
             >
               <span className="gradient-text">Land Your</span>
               <br />
-              {/* Fixed height so word swap never shifts layout */}
-              <span className="relative inline-block min-w-[280px] min-h-[1.2em]">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={wordIndex}
-                    className="gradient-text inline-block"
-                    initial={{ y: 50, opacity: 0, rotateX: -60, scale: 0.85 }}
-                    animate={{ y: 0, opacity: 1, rotateX: 0, scale: 1 }}
-                    exit={{ y: -50, opacity: 0, rotateX: 60, scale: 0.85 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ position: "absolute", left: 0 }}
-                  >
-                    {words[wordIndex]}
-                  </motion.span>
-                </AnimatePresence>
-              </span>
+              <TypewriterText
+                words={["Dream Job", "Next Role", "Career Goal", "Promotion", "Big Break"]}
+                className="gradient-text"
+                typingSpeed={75}
+                deletingSpeed={40}
+                pauseMs={2000}
+              />
             </motion.h1>
 
             <motion.p
@@ -248,6 +237,7 @@ const Index = () => {
 
       <Footer />
       <AIAssistant />
+      <BackToTop />
     </div>
   );
 };

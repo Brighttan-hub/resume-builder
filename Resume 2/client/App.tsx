@@ -5,10 +5,13 @@ import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Component, ReactNode } from "react";
+import ConfettiCanvas from "@/components/Confetti";
+import PageTransition from "@/components/PageTransition";
 
 import Index from "./pages/Index";
 import SignIn from "./pages/SignIn";
@@ -54,6 +57,27 @@ class ErrorBoundary extends Component<
   }
 }
 
+// Animated routes wrapper — needs useLocation inside BrowserRouter
+function AnimatedRoutes() {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+        <Route path="/signin" element={<PageTransition><SignIn /></PageTransition>} />
+        <Route path="/signup" element={<PageTransition><SignUp /></PageTransition>} />
+        <Route path="/create-resume" element={<PageTransition><ResumeBuilder /></PageTransition>} />
+        <Route path="/dashboard" element={<PageTransition><Dashboard /></PageTransition>} />
+        <Route path="/template-picker" element={<PageTransition><TemplatePicker /></PageTransition>} />
+        <Route path="/ai-suggestions" element={<PageTransition><AISuggestions /></PageTransition>} />
+        <Route path="/templates" element={<PageTransition><Templates /></PageTransition>} />
+        <Route path="/resume-preview" element={<PageTransition><ResumePreview /></PageTransition>} />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
@@ -63,19 +87,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <ErrorBoundary>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/signin" element={<SignIn />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/create-resume" element={<ResumeBuilder />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/template-picker" element={<TemplatePicker />} />
-                <Route path="/ai-suggestions" element={<AISuggestions />} />
-                <Route path="/templates" element={<Templates />} />
-            <Route path="/resume-preview" element={<ResumePreview />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+              <AnimatedRoutes />
             </ErrorBoundary>
           </BrowserRouter>
         </TooltipProvider>
@@ -86,6 +98,7 @@ const App = () => (
 
 createRoot(document.getElementById("root")!).render(
   <div className="relative">
+    <ConfettiCanvas />
     <App />
   </div>
 );

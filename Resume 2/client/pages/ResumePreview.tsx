@@ -8,6 +8,7 @@ import {
 import Navigation from "@/components/Navigation";
 import { resumeApi, getToken, getLocalResumes, saveLocalResumes } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
+import { launchConfetti } from "@/components/Confetti";
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
 function getDraft() {
@@ -341,6 +342,9 @@ export default function ResumePreview() {
 
     // Track on server too (best-effort, won't block UI)
     if (savedId) resumeApi.trackDownload(savedId).catch(() => {});
+
+    // 🎉 Celebrate!
+    launchConfetti();
 
     const accent = tpl.accent;
     const bg = tpl.bg;
