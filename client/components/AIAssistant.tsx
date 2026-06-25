@@ -1,6 +1,17 @@
+/**
+ * AIAssistant — Resume AI Chat powered by Google Gemini
+ *
+ * Day 3 "Add the Brain" implementation:
+ * 1. SDK: @google/generative-ai (used server-side in /server/routes/ai.ts)
+ * 2. Key: read from GEMINI_API_KEY env var on the server
+ * 3. Call site: POST /api/ai/chat → GoogleGenerativeAI.getGenerativeModel().startChat().sendMessage()
+ *
+ * The component calls the server endpoint which invokes the real Gemini LLM.
+ * Falls back to a local knowledge base if the server/key is unavailable.
+ */
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot, User, RotateCcw } from "lucide-react";
+import { X, Send, Bot, User, RotateCcw } from "lucide-react";
 
 interface Message {
   id: string;
