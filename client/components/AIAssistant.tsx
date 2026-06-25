@@ -364,7 +364,6 @@ export default function AIAssistant() {
                   <path d="M14 2C14 8.627 8.627 14 2 14C8.627 14 14 19.373 14 26C14 19.373 19.373 14 26 14C19.373 14 14 8.627 14 2Z" fill="white"/>
                 </svg>
               </div>
-              </div>
               <div className="flex-1">
                 <p className="font-bold text-white text-sm">Resume AI Assistant</p>
                 <div className="flex items-center gap-1.5">
