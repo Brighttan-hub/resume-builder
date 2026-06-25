@@ -3,9 +3,11 @@ command = "npm run build:client"
 functions = "netlify/functions"
 publish = "dist/spa"
 
+[build.environment]
+  NODE_VERSION = "20"
 
 [functions]
-external_node_modules = ["express"]
+external_node_modules = ["express", "@google/generative-ai"]
 node_bundler = "esbuild"
 [[redirects]]
 force = true
