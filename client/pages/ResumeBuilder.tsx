@@ -335,7 +335,9 @@ export default function ResumeBuilder() {
     summary: fd.summary,
     skills: skills.filter(Boolean),
     status: "draft" as const,
-  }), [fd, selectedTpl, experience, isStudent, eduLevel, columns, withPhoto, skills, searchParams]); = useCallback(async () => {
+  }), [fd, selectedTpl, experience, isStudent, eduLevel, columns, withPhoto, skills, searchParams]);
+
+  const handleSave = useCallback(async () => {
     setSaveStatus("saving");
     const draftData = { ...buildPayload(), fd, workList, eduList, projects, certs, achievements, refs, languages, softSkills, interests, photoDataUrl, savedAt: new Date().toISOString() };
     try {

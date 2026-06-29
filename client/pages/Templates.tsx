@@ -304,9 +304,6 @@ export default function Templates() {
     { label: "Clean (Helvetica)",   value: "Helvetica, Arial, sans-serif" },
   ];
 
-  // Effective accent = custom override or template default
-  const effectiveAccent = customColor ?? selectedTemplate?.accent ?? "#f97316";
-
   // Filter templates by domain — show relevant ones first, then others
   const relevant = domain
     ? allTemplates.filter((t) => t.domains.includes(domain))
@@ -317,6 +314,9 @@ export default function Templates() {
 
   const displayTemplates = [...relevant, ...rest];
   const selectedTemplate = displayTemplates.find((t) => t.id === selected);
+
+  // Effective accent = custom override or template default (must come after selectedTemplate)
+  const effectiveAccent = customColor ?? selectedTemplate?.accent ?? "#f97316";
 
   const handleUse = () => {
     if (selected) {
