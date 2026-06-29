@@ -3,8 +3,8 @@ services:
     name: resumepro
     env: node
     plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
+    buildCommand: npm install && npm run build:client
+    startCommand: npx tsx server/node-build.ts
     envVars:
       - key: NODE_ENV
         value: production
