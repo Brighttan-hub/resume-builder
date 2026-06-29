@@ -247,19 +247,27 @@ export default function ResumeBuilder() {
 
   // ── Jump to Template step when ?template= param is present ───────────────
   useEffect(() => {
-    const tplParam   = searchParams.get("template");
-    const prefill    = searchParams.get("prefill");
-    // Only auto-jump when coming from dashboard template picker (not example prefill)
+    const tplParam = searchParams.get("template");
+    const prefill  = searchParams.get("prefill");
     if (tplParam && prefill !== "1") {
-      // Validate the template id exists
       const valid = templateOptions.find(t => t.id === tplParam);
       if (valid) {
         setTpl(tplParam);
-        // Set sensible defaults so step 4 is unblocked
-        if (!withPhoto)  setPhoto("without-photo");
-        if (!columns)    setCols("one-col");
-        // Skip to step 4 — Template Preferences
-        setStep(4);
+        // Set sensible defaults so step 4 is immediately usable
+        setPhoto("without-photo");
+        setCols("one-col");
+        // Immediately persist template choice to draft so preview + download use it
+        try {
+          const existing = localStorage.getItem("rp_draft");
+          const draft = existing ? JSON.parse(existing) : {};
+          localStorage.setItem("rp_draft", JSON.stringify({
+            ...draft,
+            templateId: tplParam,
+            layoutColumns: draft.layoutColumns || "one-col",
+            withPhoto: draft.withPhoto ?? false,
+          }));
+        } catch (_) {}
+        setStep(1);
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -300,7 +308,8 @@ export default function ResumeBuilder() {
   const buildPayload = useCallback(() => ({
     title: fd.fullName ? `${fd.fullName}${fd.jobTitle ? ` – ${fd.jobTitle}` : ""}` : "Untitled Resume",
     domain: searchParams.get("domain") ?? undefined,
-    templateId: selectedTpl,
+    // Use selectedTpl (from state) or fall back to URL param — ensures template from picker page is always saved
+    templateId: selectedTpl || searchParams.get("template") || "modern",
     experienceLevel: experience as any,
     isStudent: isStudent === "student",
     educationLevel: eduLevel,
