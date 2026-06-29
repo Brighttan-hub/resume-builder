@@ -536,7 +536,7 @@ export default function Dashboard() {
 
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold">My Resumes</h2>
-              <Link to="/create-resume" className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/40 smooth-transition">
+              <Link to="/template-picker" className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-primary/40 smooth-transition">
                 <Plus className="w-4 h-4" /> New Resume
               </Link>
             </div>
@@ -611,7 +611,7 @@ export default function Dashboard() {
                   <p className="text-sm mt-1">Create your first resume to get started.</p>
                 </div>
               )}
-              <Link to="/create-resume" className="card-blur rounded-2xl min-h-[280px] flex flex-col items-center justify-center gap-3 border-dashed hover:border-primary/50 smooth-transition group">
+              <Link to="/template-picker" className="card-blur rounded-2xl min-h-[280px] flex flex-col items-center justify-center gap-3 border-dashed hover:border-primary/50 smooth-transition group">
                 <div className="w-12 h-12 bg-primary/10 group-hover:bg-primary/20 rounded-xl flex items-center justify-center smooth-transition"><Plus className="w-6 h-6 text-primary" /></div>
                 <span className="text-foreground/60 group-hover:text-foreground smooth-transition font-medium">Create New Resume</span>
               </Link>

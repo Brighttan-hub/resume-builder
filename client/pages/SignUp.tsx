@@ -60,7 +60,7 @@ export default function SignUp() {
         description: "Your account is ready. Let's build your resume!",
         duration: 4000,
       });
-      navigate("/create-resume");
+      navigate("/template-picker");
     } catch (err: any) {
       setError(err.message ?? "Sign up failed. Please try again.");
     } finally {

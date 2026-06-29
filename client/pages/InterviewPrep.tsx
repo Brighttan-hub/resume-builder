@@ -307,7 +307,7 @@ export default function InterviewPrep() {
                     className="px-6 py-3 card-blur rounded-xl font-semibold hover:border-primary/40 smooth-transition flex items-center gap-2">
                     <RefreshCw className="w-4 h-4" /> Try Again
                   </button>
-                  <Link to="/create-resume"
+                  <Link to="/template-picker"
                     className="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-semibold hover:shadow-lg smooth-transition flex items-center gap-2">
                     Build Resume <ArrowRight className="w-4 h-4" />
                   </Link>

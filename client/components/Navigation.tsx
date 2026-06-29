@@ -112,7 +112,7 @@ export default function Navigation() {
               Sign In
             </Link>
           )}
-          <Link to="/create-resume" className="hidden md:block px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-primary/50 smooth-transition text-center">
+          <Link to="/template-picker" className="hidden md:block px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-primary/50 smooth-transition text-center">
             Start Building
           </Link>
 
@@ -149,7 +149,7 @@ export default function Navigation() {
             <Link to="/dashboard" className="block text-foreground/70 hover:text-foreground smooth-transition font-medium">
               Dashboard
             </Link>
-            <Link to="/create-resume" className="w-full block px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:shadow-lg smooth-transition text-center">
+            <Link to="/template-picker" className="w-full block px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:shadow-lg smooth-transition text-center">
               Start Building
             </Link>
           </div>

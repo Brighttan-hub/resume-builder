@@ -103,7 +103,7 @@ const NotFound = () => {
             </motion.div>
             <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.96 }}>
               <Link
-                to="/create-resume"
+                to="/template-picker"
                 className="inline-flex items-center gap-2 px-8 py-4 card-blur text-foreground font-bold rounded-2xl hover:border-primary/50 smooth-transition"
               >
                 <FileText className="w-5 h-5 text-primary" />
