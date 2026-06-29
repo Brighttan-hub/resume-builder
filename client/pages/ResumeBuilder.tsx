@@ -16,14 +16,18 @@ import ResumeStrengthMeter from "@/components/ResumeStrengthMeter";
 import BuilderAITip from "@/components/BuilderAITip";
 
 // ─── Static data ──────────────────────────────────────────────────────────────
+// Must match ids and accents in client/pages/Templates.tsx exactly
 
 const templateOptions = [
-  { id: "modern",    name: "Modern",    color: "from-orange-500 to-amber-500",   accent: "#f97316", bg: "#fff7ed" },
-  { id: "classic",   name: "Classic",   color: "from-amber-500 to-orange-600",   accent: "#d97706", bg: "#fffbeb" },
-  { id: "minimal",   name: "Minimal",   color: "from-gray-500 to-gray-600",      accent: "#6b7280", bg: "#f9fafb" },
-  { id: "creative",  name: "Creative",  color: "from-orange-600 to-red-500",     accent: "#ea580c", bg: "#fff7ed" },
-  { id: "executive", name: "Executive", color: "from-stone-600 to-gray-700",     accent: "#57534e", bg: "#fafaf9" },
-  { id: "ats",       name: "ATS-Ready", color: "from-amber-600 to-orange-500",   accent: "#b45309", bg: "#fffbeb" },
+  { id: "classic",    name: "Classic",      color: "from-amber-500 to-orange-500",   accent: "#f97316", bg: "#fff7ed" },
+  { id: "modern",     name: "Modern",       color: "from-orange-500 to-amber-400",   accent: "#f97316", bg: "#fff7ed" },
+  { id: "minimal",    name: "Minimal",      color: "from-gray-500 to-gray-600",      accent: "#6b7280", bg: "#f9fafb" },
+  { id: "creative",   name: "Creative",     color: "from-emerald-600 to-teal-600",   accent: "#059669", bg: "#ecfdf5" },
+  { id: "executive",  name: "Executive",    color: "from-stone-600 to-gray-700",     accent: "#57534e", bg: "#fafaf9" },
+  { id: "ats",        name: "ATS-Optimized",color: "from-pink-600 to-red-600",       accent: "#db2777", bg: "#fdf2f8" },
+  { id: "sidebar",    name: "Sidebar Pro",  color: "from-amber-500 to-orange-500",   accent: "#d97706", bg: "#fffbeb" },
+  { id: "healthcare", name: "Healthcare",   color: "from-teal-600 to-green-600",     accent: "#0d9488", bg: "#f0fdfa" },
+  { id: "corporate",  name: "Corporate",    color: "from-slate-600 to-zinc-600",     accent: "#475569", bg: "#f8fafc" },
 ];
 
 const educationLevels = [

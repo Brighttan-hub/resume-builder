@@ -16,12 +16,15 @@ function getDraft() {
   catch { return null; }
 }
 const TEMPLATES: Record<string, { accent: string; bg: string; name: string }> = {
-  modern:    { accent: "#f97316", bg: "#fff7ed",  name: "Modern"    },
-  classic:   { accent: "#d97706", bg: "#fffbeb",  name: "Classic"   },
-  minimal:   { accent: "#6b7280", bg: "#f9fafb",  name: "Minimal"   },
-  creative:  { accent: "#ea580c", bg: "#fff7ed",  name: "Creative"  },
-  executive: { accent: "#57534e", bg: "#fafaf9",  name: "Executive" },
-  ats:       { accent: "#b45309", bg: "#fffbeb",  name: "ATS-Ready" },
+  classic:    { accent: "#f97316", bg: "#fff7ed",  name: "Classic"       },
+  modern:     { accent: "#f97316", bg: "#fff7ed",  name: "Modern"        },
+  minimal:    { accent: "#6b7280", bg: "#f9fafb",  name: "Minimal"       },
+  creative:   { accent: "#059669", bg: "#ecfdf5",  name: "Creative"      },
+  executive:  { accent: "#57534e", bg: "#fafaf9",  name: "Executive"     },
+  ats:        { accent: "#db2777", bg: "#fdf2f8",  name: "ATS-Optimized" },
+  sidebar:    { accent: "#d97706", bg: "#fffbeb",  name: "Sidebar Pro"   },
+  healthcare: { accent: "#0d9488", bg: "#f0fdfa",  name: "Healthcare"    },
+  corporate:  { accent: "#475569", bg: "#f8fafc",  name: "Corporate"     },
 };
 const EDU: Record<string, string> = {
   secondary:"Secondary School", diploma:"Diploma",
