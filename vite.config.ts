@@ -16,6 +16,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: "dist/spa",
   },
+  base: mode === "production" ? "/resume-builder/" : "/",
   plugins: [react(), expressPlugin()],
   resolve: {
     alias: {
