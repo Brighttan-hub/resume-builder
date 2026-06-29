@@ -23,6 +23,7 @@ import AISuggestions from "./pages/AISuggestions";
 import Templates from "./pages/Templates";
 import ResumePreview from "./pages/ResumePreview";
 import InterviewPrep from "./pages/InterviewPrep";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 

@@ -551,15 +551,26 @@ export default function ResumeBuilder() {
                     </button>
                   ))}
                 </div>
-                <p className="text-xs font-bold uppercase tracking-widest text-foreground/40 mb-2">Style</p>
-                <div className="grid grid-cols-3 gap-2.5">
-                  {templateOptions.map(t=>(
-                    <button key={t.id} onClick={()=>setTpl(t.id)} className={`rounded-xl overflow-hidden smooth-transition ${selectedTpl===t.id?"ring-2 ring-primary ring-offset-2 ring-offset-background scale-105":"opacity-70 hover:opacity-100"}`}>
-                      <div className="h-16 bg-foreground/5"><MiniPreview accent={t.accent} twoCol={twoCol} withPhoto={hasPhoto} /></div>
-                      <div className={`py-1 text-[10px] font-bold text-center bg-gradient-to-r ${t.color} text-white`}>{t.name}</div>
-                    </button>
-                  ))}
-                </div>
+
+                {/* Selected template — read-only display, chosen from Templates page */}
+                <p className="text-xs font-bold uppercase tracking-widest text-foreground/40 mb-2">Selected Template</p>
+                {selectedTpl ? (
+                  <div className="flex items-center gap-4 p-4 card-blur rounded-xl border border-primary/30 bg-primary/5 mb-5">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: templateOptions.find(t => t.id === selectedTpl)?.accent ?? "#f97316" }}>
+                      <Check className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-bold text-sm">{templateOptions.find(t => t.id === selectedTpl)?.name} Template</p>
+                      <p className="text-xs text-foreground/50">Selected from the Templates page ✓</p>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-sm text-amber-500 mb-5 card-blur px-4 py-3 rounded-xl">
+                    ⚠️ No template selected — <a href="/templates" className="underline font-semibold">go back and pick one</a>
+                  </p>
+                )}
+
                 <Btns onBack={goBack} onNext={goNext} disabled={!withPhoto||!columns||!selectedTpl} />
               </>)}
 
