@@ -235,6 +235,9 @@ const Index = () => {
       {/* ── CTA ───────────────────────────────────────────────────────── */}
       <CTASection />
 
+      {/* ── Meet the Team ─────────────────────────────────────────────────── */}
+      <MeetTheTeam />
+
       <Footer />
       <AIAssistant />
       <BackToTop />
@@ -672,3 +675,157 @@ function CTASection() {
 }
 
 export default Index;
+
+/* ── Meet the Team ──────────────────────────────────────────────────────────── */
+function MeetTheTeam() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  const team = [
+    {
+      name: "Paul Isak Brighttan",
+      role: "Full-Stack Developer",
+      email: "brighttanpaul@gmail.com",
+      initials: "PB",
+      gradient: "from-orange-500 to-amber-500",
+      glow: "rgba(249,115,22,0.4)",
+      icon: "⚡",
+    },
+    {
+      name: "Joywin Algo",
+      role: "Frontend Developer",
+      email: "joywin2007rj@gmail.com",
+      initials: "JA",
+      gradient: "from-amber-500 to-yellow-400",
+      glow: "rgba(245,158,11,0.4)",
+      icon: "🎨",
+    },
+    {
+      name: "Angelin Achsah S S",
+      role: "UI/UX Designer",
+      email: "angelinachsah@gmail.com",
+      initials: "AA",
+      gradient: "from-rose-500 to-orange-400",
+      glow: "rgba(244,63,94,0.4)",
+      icon: "✨",
+    },
+    {
+      name: "M. Srilaya",
+      role: "Backend Developer",
+      email: "laya751707@gmail.com",
+      initials: "MS",
+      gradient: "from-stone-500 to-gray-600",
+      glow: "rgba(120,113,108,0.4)",
+      icon: "🔧",
+    },
+  ];
+
+  return (
+    <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-foreground/[0.02]" />
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 6, repeat: Infinity }}
+      />
+      {/* Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(249,115,22,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+
+      <div className="max-w-6xl mx-auto relative z-10" ref={ref}>
+        {/* Header */}
+        <motion.div className="text-center mb-14"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}>
+          <motion.span
+            className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}>
+            👥 Our Team
+          </motion.span>
+          <h2 className="text-4xl sm:text-5xl font-bold gradient-text mb-4">Meet the Team</h2>
+          <p className="text-foreground/60 text-lg max-w-2xl mx-auto leading-relaxed">
+            Built with passion, collaboration, and innovation by our amazing team.
+          </p>
+        </motion.div>
+
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {team.map((member, i) => (
+            <motion.div key={i}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -8, scale: 1.03 }}
+              className="group relative"
+            >
+              {/* Gradient border glow on hover */}
+              <div className="absolute -inset-0.5 rounded-2xl opacity-0 group-hover:opacity-100 smooth-transition blur-sm"
+                style={{ background: `linear-gradient(135deg, ${member.glow}, transparent)` }} />
+
+              {/* Card */}
+              <div className="relative card-blur rounded-2xl p-6 text-center h-full flex flex-col items-center backdrop-blur-xl border border-foreground/10 group-hover:border-primary/30 smooth-transition overflow-hidden">
+
+                {/* Top accent bar */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${member.gradient} rounded-t-2xl`} />
+
+                {/* Avatar */}
+                <motion.div
+                  className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${member.gradient} flex items-center justify-center mb-4 shadow-xl relative`}
+                  style={{ boxShadow: `0 8px 24px ${member.glow}` }}
+                  whileHover={{ rotate: [0, -5, 5, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <span className="text-white font-black text-xl tracking-tight">{member.initials}</span>
+                  {/* Floating icon */}
+                  <motion.span
+                    className="absolute -top-1.5 -right-1.5 text-sm"
+                    animate={{ y: [0, -3, 0], rotate: [0, 10, 0] }}
+                    transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.4 }}
+                  >
+                    {member.icon}
+                  </motion.span>
+                </motion.div>
+
+                {/* Name */}
+                <h3 className="font-bold text-base mb-1 leading-tight">{member.name}</h3>
+
+                {/* Role badge */}
+                <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold text-white bg-gradient-to-r ${member.gradient} mb-4 shadow-sm`}>
+                  {member.role}
+                </span>
+
+                {/* Divider */}
+                <div className="w-8 h-px bg-foreground/15 mb-4" />
+
+                {/* Email button */}
+                <motion.a
+                  href={`mailto:${member.email}`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.96 }}
+                  className={`mt-auto inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r ${member.gradient} hover:shadow-lg smooth-transition`}
+                  style={{ boxShadow: `0 4px 12px ${member.glow}` }}
+                >
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  Contact
+                </motion.a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom tagline */}
+        <motion.div className="text-center mt-12"
+          initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.8 }}>
+          <p className="text-foreground/40 text-sm">
+            🚀 Designed & developed with ❤️ — ResumePro {new Date().getFullYear()}
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
